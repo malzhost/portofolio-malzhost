@@ -1,134 +1,66 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketplace Akun Premium</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <title>Malzhost - Rename Script</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1>AKUN<span class="highlight">PRO</span></h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#accounts">Akun Tersedia</a></li>
-                <li><a href="#how-it-works">Cara Kerja</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Kontak</a></li>
-            </ul>
-            </div>
-        </nav>
-    </header>
+  <div id="particles-js"></div>
 
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h2>Dapatkan Akun Premium Impian Anda</h2>
-                <p>Jual beli akun game, streaming, dan lainnya dengan aman, cepat, dan otomatis.</p>
-                <button class="btn primary-btn">Lihat Akun Tersedia <i class="fas fa-arrow-right"></i></button>
-            </div>
-        </section>
+  <div id="popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupDesc">
+    <div class="box">
+      <h2 id="popupTitle">Selamat Datang!</h2>
+      <p id="popupDesc">Untuk mendukung developer pada pengembangan project ini, saya mengajak anda bergabung pada saluran kami jika berkenan.</p>
+      <button id="btnJoinGroup" type="button">Bergabung Grup</button>
+      <button id="btnClosePopup" type="button" style="background:#b04c4c; margin-top:10px;">Tutup</button>
+    </div>
+  </div>
 
-        <section id="accounts">
-            <h3>Akun Pilihan Kami</h3>
-            <div class="account-grid">
-                <div class="account-card">
-                    <img src="https://via.placeholder.com/300x200?text=Akun+Netflix" alt="Akun Netflix">
-                    <h4>Netflix Premium</h4>
-                    <p class="description">Akun Netflix Premium 1 Bulan, UHD, 4 Layar.</p>
-                    <div class="price-action">
-                        <span class="price">Rp 50.000</span>
-                        <button class="btn buy-btn" data-account-id="netflix001">Beli Sekarang</button>
-                    </div>
-                </div>
-                <div class="account-card">
-                    <img src="https://via.placeholder.com/300x200?text=Akun+Spotify" alt="Akun Spotify">
-                    <h4>Spotify Premium</h4>
-                    <p class="description">Akun Spotify Premium Keluarga 3 Bulan.</p>
-                    <div class="price-action">
-                        <span class="price">Rp 35.000</span>
-                        <button class="btn buy-btn" data-account-id="spotify002">Beli Sekarang</button>
-                    </div>
-                </div>
-                </div>
-        </section>
+  <div id="loadingScreen" role="alert" aria-live="assertive">Memproses... Mohon tunggu.</div>
 
-        <section id="how-it-works">
-            <h3>Bagaimana Cara Kerjanya?</h3>
-            <div class="steps-grid">
-                <div class="step-item">
-                    <i class="fas fa-search"></i>
-                    <h4>1. Temukan Akun</h4>
-                    <p>Jelajahi berbagai pilihan akun premium yang kami tawarkan.</p>
-                </div>
-                <div class="step-item">
-                    <i class="fas fa-shopping-cart"></i>
-                    <h4>2. Beli Akun</h4>
-                    <p>Lakukan pembayaran dengan aman melalui metode yang tersedia.</p>
-                </div>
-                <div class="step-item">
-                    <i class="fas fa-envelope-open-text"></i>
-                    <h4>3. Terima Instan</h4>
-                    <p>Detail akun akan dikirimkan secara otomatis ke email Anda setelah pembayaran terverifikasi.</p>
-                </div>
-            </div>
-        </section>
+  <h2>Eriza Script Renaming</h2>
+  <p style="text-align: center;">Upload file <strong>.zip</strong> hasil create dari bot WhatsApp kamu, lalu sesuaikan konfigurasi nya!</p>
 
-        <section id="testimonials">
-            <h3>Apa Kata Pelanggan Kami?</h3>
-            <div class="testimonial-slider">
-                <div class="testimonial-item">
-                    <p>"Prosesnya cepat dan akunnya langsung sampai! Sangat direkomendasikan."</p>
-                    <span>- Sarah L.</span>
-                </div>
-                <div class="testimonial-item">
-                    <p>"Website yang sangat user-friendly, dan CS-nya responsif."</p>
-                    <span>- Budi S.</span>
-                </div>
-            </div>
-        </section>
-    </main>
+  <div class="card" role="main" aria-label="Form edit script bot WhatsApp">
+    <label for="zipInput">Upload File ZIP Script</label>
+    <input type="file" id="zipInput" accept=".zip" aria-describedby="zipHelp" />
+    <button id="btnUploadZip" type="button">Pilih File ZIP</button>
+    <div id="zipFileList" aria-live="polite" aria-atomic="true" style="display:none;"></div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h3>AKUN<span class="highlight">PRO</span></h3>
-                <p>Solusi terbaik untuk mendapatkan akun premium Anda.</p>
-                <div class="socials">
-                    <a href="https://wa.me/6288214173300"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://t.me/botzmalz"><i class="fab fa-telegram"></i></a>
-                    <a href="aldiherdiansyah876@gmail.com"><i class="fab fa-gmail"></i></a>
-                </div>
-            </div>
-            <div class="footer-section links">
-                <h3>Tautan Cepat</h3>
-                <ul>
-                    <li><a href="#accounts">Semua Akun</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Dukungan</a></li>
-                    <li><a href="#">Kebijakan Privasi</a></li>
-                </ul>
-            </div>
-            <div class="footer-section contact-form">
-                <h3>Hubungi Kami</h3>
-                <p>Ada pertanyaan? Kirim pesan kepada kami!</p>
-                <form>
-                    <input type="email" placeholder="Email Anda">
-                    <textarea placeholder="Pesan Anda"></textarea>
-                    <button type="submit" class="btn primary-btn">Kirim</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2025 AKUNPRO. All rights reserved.
-        </div>
-    </footer>
+    <div id="editForm" style="display:none" aria-hidden="true">
+      <label for="namabot">Nama Bot</label>
+      <input type="text" id="namabot" placeholder="Contoh: RizaBot" autocomplete="off" />
 
-    <script src="script.js"></script>
+      <label for="ownername">Nama Owner</label>
+      <input type="text" id="ownername" placeholder="Contoh: Eriza" autocomplete="off" />
+
+      <label for="owner">Nomor Owner (tanpa +)</label>
+      <input type="text" id="owner" placeholder="Contoh: 6281234567890" autocomplete="off" inputmode="numeric" pattern="[0-9]*" title="Hanya angka" />
+
+      <label for="botversion">Versi Bot</label>
+      <input type="text" id="botversion" placeholder="Contoh: V1.2" autocomplete="off" />
+
+      <label for="linkgc">Link Grup WhatsApp</label>
+      <input type="text" id="linkgc" placeholder="https://chat.whatsapp.com/xxxxx" autocomplete="off" />
+
+      <label for="linkSaluran">Link Saluran WhatsApp</label>
+      <input type="text" id="linkSaluran" placeholder="https://whatsapp.com/channel/xxxxx" autocomplete="off" />
+
+      <label for="thumbnailUrlInput">URL Gambar Thumbnail</label>
+      <input type="text" id="thumbnailUrlInput" placeholder="Tempel URL thumbnail dari bot WhatsApp" autocomplete="off" />
+      <img id="thumbPreview" alt="Preview Thumbnail" />
+
+      <button id="btnGenerateZip" type="button">Done Rename</button>
+      <button id="btnReset" type="button" style="background:#b04c4c; margin-top:10px;">Reset Konfigurasi</button>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
